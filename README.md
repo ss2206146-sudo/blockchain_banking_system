@@ -37,7 +37,7 @@ pip install -r requirements.txt
 python app.py
 
 6. Open:
-http://127.0.0.1:5000
+https://blockchain-banking-system.vercel.app/
 
 The SQLite database `bank.db` is created automatically.
 
