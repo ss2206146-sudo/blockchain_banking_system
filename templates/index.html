@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}BlockBank - Home{% endblock %}
+{% block content %}
+<section class="hero">
+    <div>
+        <span class="tag">BLOCKCHAIN BANKING</span>
+        <h1>Secure. Transparent. Tamper-evident.</h1>
+        <p>A web-based banking simulation that records transactions in a cryptographically linked blockchain.</p>
+        <a class="btn" href="{{ url_for('register') }}">Create Account</a>
+        <a class="btn secondary" href="{{ url_for('login') }}">Login</a>
+    </div>
+</section>
+
+<div class="grid three">
+    <div class="card"><h3>Secure Authentication</h3><p>Passwords are stored as secure hashes rather than plain text.</p></div>
+    <div class="card"><h3>Blockchain Ledger</h3><p>Transactions are linked using SHA-256 hashes.</p></div>
+    <div class="card"><h3>Tamper Detection</h3><p>Verify the chain to detect changed transaction records.</p></div>
+</div>
+{% endblock %}

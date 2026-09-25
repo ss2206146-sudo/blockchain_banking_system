@@ -1,0 +1,14 @@
+services:
+  backend:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      SECRET_KEY: ${SECRET_KEY:-change-this-secret-key}
+      DATABASE_PATH: /data/bank.db
+    volumes:
+      - banking_data:/data
+    restart: unless-stopped
+
+volumes:
+  banking_data:

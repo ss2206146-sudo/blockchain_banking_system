@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Transactions{% endblock %}
+{% block content %}
+<div class="card">
+<h1>Transaction History</h1>
+<p class="muted">Account: {{ account }}</p>
+{% if transactions %}
+<table>
+<tr><th>ID</th><th>Type</th><th>From</th><th>To</th><th>Amount</th><th>Time</th><th>Block Hash</th></tr>
+{% for tx in transactions %}
+<tr>
+<td>{{ tx["id"] }}</td><td>{{ tx["transaction_type"] }}</td>
+<td>{{ tx["sender"] }}</td><td>{{ tx["receiver"] }}</td>
+<td>₹{{ "%.2f"|format(tx["amount"]) }}</td><td>{{ tx["timestamp"] }}</td>
+<td><code>{{ tx["block_hash"][:18] }}...</code></td>
+</tr>
+{% endfor %}
+</table>
+{% else %}<p>No transactions found.</p>{% endif %}
+</div>
+{% endblock %}

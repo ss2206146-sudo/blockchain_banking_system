@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Blockchain{% endblock %}
+{% block content %}
+<div class="section-heading">
+<h1>Blockchain Explorer</h1>
+<a class="btn" href="{{ url_for('verify') }}">Verify Chain</a>
+</div>
+
+{% for block in chain %}
+<div class="block card">
+<div class="block-title">
+<h2>Block #{{ block.index }}</h2>
+<span>{{ block.timestamp }}</span>
+</div>
+<p><strong>Transaction:</strong></p>
+<pre>{{ block.transactions | tojson(indent=2) }}</pre>
+<p><strong>Previous Hash</strong></p>
+<code>{{ block.previous_hash }}</code>
+<p><strong>Current Hash</strong></p>
+<code>{{ block.hash }}</code>
+<p><strong>Nonce:</strong> {{ block.nonce }}</p>
+</div>
+{% endfor %}
+{% endblock %}

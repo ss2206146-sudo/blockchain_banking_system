@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="welcome">
+    <div>
+        <p class="muted">Welcome back</p>
+        <h1>{{ user["name"] }}</h1>
+        <p>Account: <strong>{{ user["account_number"] }}</strong></p>
+    </div>
+    <div class="balance">
+        <span>Available Balance</span>
+        <strong>₹{{ "%.2f"|format(user["balance"]) }}</strong>
+    </div>
+</div>
+
+<div class="grid four">
+    <a class="action card" href="{{ url_for('deposit') }}"><h3>Deposit</h3><p>Add simulated funds</p></a>
+    <a class="action card" href="{{ url_for('withdraw') }}"><h3>Withdraw</h3><p>Withdraw funds</p></a>
+    <a class="action card" href="{{ url_for('transfer') }}"><h3>Transfer</h3><p>Send to another account</p></a>
+    <a class="action card" href="{{ url_for('blockchain_view') }}"><h3>Blockchain</h3><p>Explore blocks</p></a>
+</div>
+
+<div class="card">
+<h2>Recent Transactions</h2>
+{% if transactions %}
+<table>
+<tr><th>Type</th><th>From</th><th>To</th><th>Amount</th><th>Status</th></tr>
+{% for tx in transactions %}
+<tr>
+<td>{{ tx["transaction_type"] }}</td><td>{{ tx["sender"] }}</td><td>{{ tx["receiver"] }}</td>
+<td>₹{{ "%.2f"|format(tx["amount"]) }}</td><td class="success-text">{{ tx["status"] }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}<p>No transactions yet.</p>{% endif %}
+</div>
+{% endblock %}

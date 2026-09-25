@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Verify Blockchain{% endblock %}
+{% block content %}
+<div class="verify card">
+{% if valid %}
+    <div class="status-icon">✓</div>
+    <h1>Blockchain is Valid</h1>
+    <p>All block hashes and previous-hash links are consistent.</p>
+{% else %}
+    <div class="status-icon">!</div>
+    <h1>Blockchain Integrity Failed</h1>
+    {% for error in errors %}<p class="error-text">{{ error }}</p>{% endfor %}
+{% endif %}
+<a class="btn" href="{{ url_for('blockchain_view') }}">View Blockchain</a>
+</div>
+{% endblock %}
